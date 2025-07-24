@@ -15,7 +15,7 @@ from io import BytesIO
 
 # 0. Модуль кода для работы самого скрипта и модели
 
-model_final = YOLO("./models/model_2/best_2.pt")
+model_final = YOLO("./models/best_2.pt")
 
 # 1. Делаем описание проекта.
 st.badge('🚨 powered by EugeneOss 🚨')
