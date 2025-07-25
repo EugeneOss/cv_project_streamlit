@@ -106,10 +106,10 @@ class UNet(nn.Module):
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # 3. Инициализация
-model1 = UNet(n_class=2).to(device)
+# model1 = UNet(n_class=2).to(device)
 
 # 4. Загрузка весов
-model1.load_state_dict(torch.load('./models/best.pth', map_location=device))
+# model1.load_state_dict(torch.load('./models/best.pth', map_location=device))
 
 @st.cache_resource
 def load_model_from_hf():
@@ -122,7 +122,9 @@ def load_model_from_hf():
         with open(local_path, "wb") as f:
             response = requests.get(model_url)
             f.write(response.content)
-
+            
+    model = UNet(n_class=2).to(device)
+    model.load_state_dict(torch.load(local_path, map_location=device))
     model.eval()  # переводим в режим предсказания
 
     return model
