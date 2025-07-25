@@ -123,8 +123,6 @@ def load_model_from_hf():
             response = requests.get(model_url)
             f.write(response.content)
 
-    model = UNet(n_class=2).to(device)
-    model.load_state_dict(torch.load(local_path, map_location=device))
     model.eval()  # переводим в режим предсказания
 
     return model
